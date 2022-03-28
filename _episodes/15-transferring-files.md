@@ -99,26 +99,22 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > download the file, then use the `scp` command (just below here) to upload
 > it to the cluster.
 >
-> > ## `curl -O` from {{ site.remote.login }}
+> Try downloading the file directly. Note that it may well fail, and that's
+> OK!
+>
+> > ## Commands
+> >
+> > ```
+> > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+> > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 > > or
-> > ## `wget` from {{ site.remote.login }}
-> > 
-> > Try downloading the file directly. Note that it may well fail, and that's
-> > OK!
-> >
-> > > ## Commands
-> > >
-> > > ```
-> > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-> > > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
-> > > or
-> > > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
-> > > ```
-> > > {: .language-bash}
-> > {: .solution}
-> >
-> > Did it work? If not, what does the terminal output tell you about what
-> > happened?
+> > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > ```
+> > {: .language-bash}
+> {: .solution}
+>
+> Did it work? If not, what does the terminal output tell you about what
+> happened?
 > {: .challenge}
 {: .discussion}
 
@@ -134,7 +130,7 @@ provided.
 
 > ## Caution
 >
-> For a large directory &mdash; either in size or number of files &mdash;
+> For a large directory -- either in size or number of files --
 > copying with `-r` can take a long time to complete.
 {: .callout}
 
@@ -148,8 +144,8 @@ path starting with a `/` is called *absolute*, since there can be nothing above
 the root `/`. A path that does not start with `/` is called *relative*, since
 it is not anchored to the root.
 
-If you want to upload a file to a location inside your home directory &mdash;
-which is often the case &mdash; then you don't need a leading `/`. After the
+If you want to upload a file to a location inside your home directory --
+which is often the case -- then you don't need a leading `/`. After the
 `:`, start writing the sequence of folders that lead to the final storage
 location for the file or, as mentioned above, provide nothing if your home
 directory *is* the destination.
@@ -173,12 +169,13 @@ A trailing slash on the target directory is optional, and has no effect for
 > ```
 > {: .language-bash}
 >
-> The `a` (archive) option preserves file timestamps and permissions among
-> other things; the `v` (verbose) option gives verbose output to help monitor
-> the transfer; the `z` (compression) option compresses the file during transit
-> to reduce size and transfer time; and the `P` (partial/progress) option
-> preserves partially transferred files in case of an interruption and also
-> displays the progress of the transfer.
+> The options are:
+> * `a` (archive) to preserve file timestamps and permissions among other things
+> * `v` (verbose) to get verbose output to help monitor the transfer
+> * `z` (compression) to compress the file during transit to reduce size and 
+> transfer time
+> * `P` (partial/progress) to preserve partially transferred files in case 
+> of an interruption and also displays the progress of the transfer.
 >
 > To recursively copy a directory, we can use the same options:
 >
@@ -402,8 +399,8 @@ When it's done, check the directory size with `du` and compare.
 > {: .discussion}
 {: .challenge}
 
-If you want to reverse the process &mdash; compressing raw data instead of
-extracting it &mdash; set a `c` flag instead of `x`, set the archive filename,
+If you want to reverse the process -- compressing raw data instead of
+extracting it -- set a `c` flag instead of `x`, set the archive filename,
 then provide a directory to compress:
 
 ```
